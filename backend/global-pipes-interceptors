@@ -1,0 +1,14 @@
+import { ValidationPipe } from '@nestjs/common';
+import { APP_PIPE, APP_INTERCEPTOR } from '@nestjs/core';
+import { ClassSerializerInterceptor } from '@nestjs/common';
+
+export const GlobalPipesInterceptors = [
+  {
+    provide: APP_PIPE,
+    useClass: ValidationPipe,
+  },
+  {
+    provide: APP_INTERCEPTOR,
+    useClass: ClassSerializerInterceptor,
+  },
+];

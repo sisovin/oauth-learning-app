@@ -1,0 +1,17 @@
+export type ApiResponse<T> = {
+  data: T;
+  error?: string;
+};
+
+export type User = {
+  id: string;
+  email: string;
+  name?: string;
+  provider: string;
+  createdAt: Date;
+};
+
+export type AuthResponse = ApiResponse<{
+  token: string;
+  user: User;
+}>;
