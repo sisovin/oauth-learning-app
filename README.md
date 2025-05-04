@@ -1,2 +1,1 @@
-# oauth-learning-app
-A repository for OAuth 2.0 learning app
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
