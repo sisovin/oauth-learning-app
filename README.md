@@ -1,139 +1,192 @@
 # OAuth 2.0 Learning App - Monorepo
 
-## 🌐 **Workspace Setup**
-- [ ] Initialize PNPM workspace (`pnpm-workspace.yaml`)
-- [ ] Configure Turborepo pipelines (`turbo.json`)
-- [ ] Set up shared `tsconfig.base.json`
-- [ ] Create root `README.md` with development guide
-- [ ] Add global `.gitignore` (node_modules, .env, etc.)
+Welcome to the **OAuth 2.0 Learning App** monorepo! This repository serves as a comprehensive learning platform for understanding and experimenting with OAuth 2.0 concepts. Built with a modular architecture, this app is designed to provide hands-on experience with the OAuth authentication framework.
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
-## 📦 **Shared Packages**
-### `packages/config`
-- [ ] ESLint shared config (`eslint-config-custom`)
-- [ ] TypeScript config presets (`tsconfig/*`)
+## About the Project
 
-### `packages/db`
-- [ ] Prisma client generation setup
-- [ ] Shared database types
+This repository is a monorepo designed to help developers learn and experiment with OAuth 2.0. It includes examples, best practices, and a modular architecture for building and testing OAuth 2.0 implementations.
 
-### `packages/shared`
-- [ ] Zod validation schemas (`types/*`)
-- [ ] Utility functions (`utils/*`)
-- [ ] Shared API types (Frontend<>Backend)
+Whether you're a beginner looking to understand the basics or an experienced developer refining your skills, this repository offers tools, guides, and examples to enhance your knowledge.
+
+### Goals:
+
+- Simplify the learning curve for OAuth 2.0.
+- Provide modular, reusable components for OAuth 2.0 implementations.
+- Offer practical, hands-on examples for experimentation.
 
 ---
 
-## 🖥️ **Frontend (Next.js)**
-### 1. Core Setup
-- [ ] Initialize Next.js 14 with App Router
-- [ ] Configure TailwindCSS (`tailwind.config.ts`)
-- [ ] Set up absolute imports (`tsconfig.json`)
-- [ ] Add NextAuth.js v5 skeleton
+## Features
 
-### 2. App Router Structure
-- [ ] Main layout (`app/layout.tsx`)
-- [ ] Homepage (`app/page.tsx`)
-- [ ] Auth group routes (`(auth)/login/page.tsx`)
-- [ ] Protected dashboard (`dashboard/page.tsx`)
-- [ ] Dynamic learning pages (`learn/[slug]/page.tsx`)
-
-### 3. Components
-- [ ] OAuth provider buttons (`components/auth/OAuthProviders.tsx`)
-- [ ] Interactive flow diagram (`components/diagrams/FlowChart.tsx`)
-- [ ] ShadCN UI components (`components/ui/*`)
-
-### 4. Libraries
-- [ ] NextAuth configuration (`lib/auth/[...nextauth].ts`)
-- [ ] API client setup (`lib/api/client.ts`)
-- [ ] OAuth flow constants (`lib/constants/oauth-flows.ts`)
+- **Comprehensive OAuth 2.0 Examples**: Covers various flows like Authorization Code Flow, Implicit Flow, Client Credentials, and Resource Owner Password Credentials.
+- **Modular Architecture**: Easy to add or remove modules based on learning objectives.
+- **TypeScript Support**: Ensures type safety and better developer experience.
+- **Demo Applications**: Pre-built applications to test OAuth 2.0 flows.
+- **Hands-On Exercises**: Includes examples for integrating with popular identity providers like Google, GitHub, and Okta.
 
 ---
 
-## ⚙️ **Backend (NestJS)**
-### 1. Core Setup
-- [ ] Initialize NestJS with modular structure
-- [ ] Configure global pipes/interceptors
-- [ ] Set up Prisma integration
+## Tech Stack
 
-### 2. Auth Module
-- [ ] OAuth controllers (`/auth/login`, `/auth/callback`)
-- [ ] JWT strategy (`strategies/jwt.strategy.ts`)
-- [ ] Google OAuth strategy
-- [ ] GitHub OAuth strategy
-- [ ] Auth guards (`guards/jwt-auth.guard.ts`)
+This project is primarily developed using the following technologies:
 
-### 3. User Module
-- [ ] User entity (`entities/user.entity.ts`)
-- [ ] Profile endpoint (`/user/me`)
-- [ ] Prisma service integration
-
-### 4. Database
-- [ ] Prisma schema (`schema.prisma`)
-  ```prisma
-  model User {
-    id        String   @id @default(uuid())
-    email     String   @unique
-    name      String?
-    provider  String   @default("local")
-    createdAt DateTime @default(now())
-  }
-  ```
+- **Programming Languages**: 
+  - TypeScript (96.3%)
+  - JavaScript (3.7%)
+- **Framework**: Node.js
+- **Build Tools**: 
+  - Webpack
+  - Babel
+- **Package Manager**: Yarn / npm
+- **Testing Framework**: Jest
 
 ---
 
-## Development Guide
+## Getting Started
+
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
-- Node.js (>=14.x)
-- PNPM (>=6.x)
-- Docker (for database)
 
-### Getting Started
+Ensure you have the following installed on your local machine:
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/githubnext/workspace-blank.git
-   cd workspace-blank
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [Yarn](https://yarnpkg.com/) or npm
+- Git
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/sisovin/oauth-learning-app.git
+   ```
+2. **Navigate to the project directory**:
+   ```bash
+   cd oauth-learning-app
+   ```
+3. **Install dependencies**:
+   Using Yarn:
+   ```bash
+   yarn install
+   ```
+   Or using npm:
+   ```bash
+   npm install
    ```
 
-2. **Install dependencies:**
-   ```sh
-   pnpm install
+### Running the App
+
+1. **Start the development server**:
+   Using Yarn:
+   ```bash
+   yarn start
+   ```
+   Or using npm:
+   ```bash
+   npm run start
    ```
 
-3. **Set up the database:**
-   ```sh
-   docker-compose up -d
-   pnpm db:push
-   ```
+2. Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
 
-4. **Run the development server:**
-   ```sh
-   pnpm dev
-   ```
+---
 
-5. **Open your browser:**
-   Navigate to `http://localhost:3000`
+## Project Structure
 
-### Project Structure
+Here's an overview of the directory structure for the monorepo:
 
-- `packages/`: Shared packages (config, db, shared)
-- `frontend/`: Next.js application
-- `backend/`: NestJS application
+```
+oauth-learning-app/
+├── packages/
+│   ├── server/             # OAuth 2.0 server implementation
+│   ├── client/             # Frontend client applications
+│   ├── shared/             # Shared utilities and configurations
+├── .github/                # GitHub-specific files (e.g., workflows)
+├── tests/                  # Test cases for the project
+├── .eslintrc.js            # Linting configuration
+├── .prettierrc             # Code formatting configuration
+├── package.json            # Project metadata and dependencies
+└── README.md               # Project documentation
+```
 
-### Scripts
+---
 
-- `pnpm dev`: Run development servers
-- `pnpm build`: Build the project
-- `pnpm lint`: Lint the codebase
-- `pnpm test`: Run tests
+## Usage
 
-### Contributing
+### Examples of OAuth 2.0 Flows
 
-Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
+- **Authorization Code Flow**: 
+  - Find code examples in the `packages/server` module.
+  - Run the app and test against a demo identity provider.
 
-### License
+- **Implicit Flow**:
+  - Refer to the `packages/client` for examples of single-page applications implementing this flow.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Client Credentials**:
+  - Use the server module for machine-to-machine authentication examples.
+
+- **Resource Owner Password Credentials**:
+  - Demonstrates direct user authentication with username and password.
+
+### Integrations
+
+- Google OAuth
+- GitHub OAuth
+- Custom OAuth server
+
+---
+
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+To contribute:
+
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+Please ensure your code adheres to the existing coding standards and include relevant tests.
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## Acknowledgments
+
+- [OAuth 2.0 Specification](https://oauth.net/2/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
+- [Node.js Documentation](https://nodejs.org/)
+- [Jest Testing Framework](https://jestjs.io/)
+
+---
+
+## Contact
+
+**Repository Owner**: [sisovin](https://github.com/sisovin)
+
+For issues or feature requests, please use the [GitHub Issues](https://github.com/sisovin/oauth-learning-app/issues) page.
+
+---
